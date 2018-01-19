@@ -1,22 +1,10 @@
 # Glass
 
-TODO: Write a description here
-
-## Installation
-
-TODO: Write installation instructions here
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
+(W.I.P) GUI Library written in Crystal
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/Glass/fork )
+1. Fork it ( https://github.com/sombrastudios/Glass/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -24,4 +12,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) sombrastudios - creator, maintainer
+* [[sombrastudios]](https://github.com/sombrastudios) sombrastudios - creator, maintainer
