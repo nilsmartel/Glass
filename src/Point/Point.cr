@@ -5,4 +5,6 @@ struct Point
 
 	def initialize(@x, @y)
 	end
+
+	# TODO add Bunch of Methods for Subtracting, Adding etc.
 end
