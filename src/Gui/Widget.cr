@@ -3,7 +3,8 @@ class Widget
 	@width : Int32 = 0
 	@height : Int32 = 0
 	@parent : Container | Nil
-	@image : ImageClip
+	property image : ImageClip
+	property background_color : Color = Color.new(128_u8, 128_u8, 128_u8, 255_u8)
 
 	def initialize(@image)
 
@@ -24,6 +25,7 @@ class Widget
 	# Render Widget
 	def render()
 	end
+
 	# TODO
 	# def hover, click, keyboard, focus etc...
 	# this is going to be a shitload of work

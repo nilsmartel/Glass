@@ -39,12 +39,30 @@ struct ImageClip
 
 	def set_pixel(x, y : Int, c : Color)
 		if check_bounds x, y, width, height
-			image.set_pixel(x, y, c)
+			image.set_pixel x, y, c
 		end
 	end
 
 	def set_pixel(pos : Point, c : Color)
 		set_pixel pos.x, pos.y, c
+	end
+
+	# Returns a Cropped Clip, that's in the Bounds of this Clip
+	# and relative to it's position
+	def get_clip(p : Point, w, h : UInt32) : ImageClip
+		if p.x > @width
+			w = 0
+		elsif w > p.x + @width
+			w = pos.x + @width
+		end
+
+		if p.y > @height
+			h = 0
+		elsif h > p.y + @height
+			h = p.y + @height
+		end
+
+		new @image, p, w, h
 	end
 end
 
