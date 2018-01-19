@@ -12,6 +12,11 @@ class Container
 		end
 	end
 
+	# Method to recalculte position and size of all childs
+	# and furthermore, assign adjusted ImageClips
+	def on_update()
+	end
+
 	def +(*w : Widget)
 	  w.each do |widget|
 			widget.set_parent self
