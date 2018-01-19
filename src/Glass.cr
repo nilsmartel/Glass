@@ -1,7 +1,7 @@
 require "./Glass/*"
 require "./Color"
 require "./Image"
-require "./Gui/*"
+require "./UI/*"
 module Glass
   # TODO Put your code here
 end
