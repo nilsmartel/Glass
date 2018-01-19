@@ -1,6 +1,7 @@
 require "../Color"
 require "../Point"
 
+# Struct to represent an sRGBA Image
 struct Image
 	property width : UInt32
 	property height : UInt32
@@ -10,17 +11,23 @@ struct Image
 		@data = Array.new(width * height) { Color.new() }
 	end
 
-	def setPixel(x, y : Int, c : Color)
+	def set_pixel(x, y : Int, c : Color)
 		if check_bounds x, y, width, height
 			@data[x % width + y*width] = c
 		end
 	end
 
-	def setPixel(pos : Point, c : Color)
-		setPixel pos.x, pos.y, c
+	def set_pixel(pos : Point, c : Color)
+		set_pixel pos.x, pos.y, c
+	end
+
+	# Returns an ImageClip pointing to the Image
+	def to_clip() : ImageClip
+		ImageClip.new(self, pos.new(0,0), width, height)
 	end
 end
 
+# Represents an (Cropped) Sector from an Image
 struct ImageClip
 	property pos : Point
 	property width : UInt32
@@ -30,14 +37,14 @@ struct ImageClip
 	def initialize(@image, @pos, @width, @height)
 	end
 
-	def setPixel(x, y : Int, c : Color)
+	def set_pixel(x, y : Int, c : Color)
 		if check_bounds x, y, width, height
-			image.setPixel(x, y, c)
+			image.set_pixel(x, y, c)
 		end
 	end
 
-	def setPixel(pos : Point, c : Color)
-		setPixel pos.x, pos.y, c
+	def set_pixel(pos : Point, c : Color)
+		set_pixel pos.x, pos.y, c
 	end
 end
 
