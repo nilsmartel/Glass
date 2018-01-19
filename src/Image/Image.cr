@@ -2,7 +2,7 @@ require "../Color"
 require "../Point"
 
 # Struct to represent an sRGBA Image
-struct Image
+class Image
 	property width : UInt32
 	property height : UInt32
 	@data : Array(Color)

@@ -20,7 +20,7 @@ class Container
 	end
 end
 
-class VerticalContainer > Container
+class VerticalContainer < Container
 
 	#	Margin?
 	def height()
@@ -40,7 +40,7 @@ class VerticalContainer > Container
 	end
 end
 
-class HorizontalContainer > Container
+class HorizontalContainer < Container
 
 	#	Margin?
 	def height()

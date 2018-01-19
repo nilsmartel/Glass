@@ -1,9 +1,13 @@
 
 class Widget
-	@width : Int32
-	@height : Int32
+	@width : Int32 = 0
+	@height : Int32 = 0
 	@parent : Container | Nil
 	@image : ImageClip
+
+	def initialize(@image)
+
+	end
 
 	def width()
 		@width
@@ -13,8 +17,8 @@ class Widget
 		@height
 	end
 
-	def set_parent(w: Widget | Nil)
-		@parent =
+	def set_parent(w : Widget | Nil)
+		@parent = w
 	end
 
 	# Render Widget
