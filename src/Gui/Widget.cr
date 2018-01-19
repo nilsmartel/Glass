@@ -17,6 +17,9 @@ class Widget
 		@parent =
 	end
 
+	# Render Widget
+	def render()
+	end
 	# TODO
 	# def hover, click, keyboard, focus etc...
 	# this is going to be a shitload of work

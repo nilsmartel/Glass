@@ -6,6 +6,12 @@ class Container
 		@childs = [] of Array(Container)
 	end
 
+	def render()
+		@childs.each do |widget|
+			widget.render
+		end
+	end
+
 	def +(*w : Widget)
 	  w.each do |widget|
 			widget.set_parent self
