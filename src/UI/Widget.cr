@@ -2,20 +2,24 @@
 module Glass
 
 	class Widget
-		@width : UInt32 | Nil = 0_u32
-		@height : UInt32 | Nil = 0_u32
-		@parent : Container | Nil
+		@width  : UInt32 | Nil = nil
+		@height : UInt32 | Nil = nil
+		@parent : Container | Nil = nil
 		property image : ImageClip
 		property background_color = SF::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
 
 		def initialize(@image)
-
 		end
 
+		# TODO can't fix this, ask for Support.
+		# This is getting weird
 		# Returns width of Widget or 0 (if width equals nil)
 		def width() : UInt32
-			return @width if @width
-			0_u32
+			unless @width == nil
+				return @width
+			else
+				return 0_u32
+			end
 		end
 
 		# Returns height of Widget or 0 (if height equals nil)
@@ -44,7 +48,8 @@ module Glass
 		# Render Widget
 		def render()
 			# Make sure you only iterate over the pixels you truly need
-			w = min width, @image.width
+			# w = min width, @image.width.to_u32
+			w = width < @image.width ? width : @image.width
 			h = min height, @image.height
 
 			# Iterate over each vertical and horizontal pixel of this container
@@ -69,7 +74,7 @@ private def max(a, b : UInt32) : UInt32
 	a > b ? a : b
 end
 
-#returns the greater of two Numbers
+#returns the smaller of two Numbers
 private def min(a, b : UInt32) : UInt32
 	a < b ? a : b
 end

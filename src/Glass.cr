@@ -14,7 +14,7 @@ module Glass
 
 	# run the program as long as the window is open
 	while window.open?
-		# check all the window's events that were triggered since the last iteration of the loop
+		# check all the window's evedents that were triggered since the last iteration of the loop
 		while event = window.poll_event
 			window.close if event.is_a? SF::Event::Closed
 		end

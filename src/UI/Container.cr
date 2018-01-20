@@ -27,19 +27,20 @@ module Glass
 		end
 
 		def render()
-			# TODO call super instead
-			w = @image.width
-			h = @image.height
-
-			# Iterate over each vertical and horizontal pixel of this container
-			(0...w).each do |x|
-				(0...h).each do |y|
-					@image.set_pixel w, y, background_color
-				end
-			end
-
+			# Just for Testing purpose
+			render_test()
 			@childs.each do |widget|
 				widget.render
+			end
+		end
+
+		def render_test()
+			(0...256).each do |x|
+				(0...256).each do |y|
+					if (x * y) & 1 == 0
+						@image.set_pixel x, y, background_color
+					end
+				end
 			end
 		end
 
@@ -88,7 +89,7 @@ module Glass
 		def move_content(x, y : Int32)
 			move_content Point.new x, y
 		end
-end
+	end
 
 	class VerticalContainer < Container
 		@widget_height : UInt32 = 0_u32
