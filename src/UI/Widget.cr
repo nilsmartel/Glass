@@ -31,6 +31,14 @@ module Glass
 
 		# Render Widget
 		def render()
+			w = max width, image.width
+			h = max height, image.height
+
+			(0...w).each do |x|
+				(0...h).each do |y|
+					@image.set_pixel w, y, background_color
+				end
+			end
 		end
 
 		# TODO
@@ -40,4 +48,9 @@ module Glass
 		# will be fun anyways, but non-the-less.
 		# It will take some time untill I implement this
 	end
+end
+
+#returns the greater of two Numbers
+private def max(a, b : UInt32) : UInt32
+	a > b ? a : b
 end
