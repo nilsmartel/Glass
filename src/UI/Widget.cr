@@ -12,12 +12,17 @@ module Glass
 
 		end
 
-		def width()
-			@width
+		# Returns width of Widget or 0 (if width equals nil)
+		def width() : UInt32
+			return @width if @width
+			0_32
 		end
 
-		def height()
-			@height
+		# Returns height of Widget or 0 (if height equals nil)
+		def height() : UInt32
+			@height if @height
+
+			0
 		end
 
 		def set_parent(w : Widget | Nil)
