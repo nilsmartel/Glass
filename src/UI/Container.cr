@@ -22,8 +22,8 @@ module Glass
 		def on_update()
 		end
 
-		def +(*w : Widget)
-		  w.each do |widget|
+		def +(*widgets : Widget)
+		  widgets.each do |widget|
 				widget.set_parent self
 				@childs << widget
 			end
@@ -31,16 +31,25 @@ module Glass
 
 		def height(y : UInt32 | Nil)
 			@height = y
-			@image = parent.image.get_clip @image.pos, height, width
+			@image = parent.image.get_clip @image.pos, width, height
 		end
 
 		def width(x : UInt32 | Nil)
 			@width = x
-			@image = parent.image.get_clip @image.pos, height, width
+			@image = parent.image.get_clip @image.pos, width, height
 		end
 	end
 
 	class VerticalContainer < Container
+		@widget_height : UInt32 = 0_u32
+		def +(*widgets : Widget)
+			widgets.each do |widget|
+				widget.set_parent self
+				widget.set_pos 0_u32, @widget_height
+				@widget_height += widget.height
+				@childs << widget
+			end
+		end
 
 		def height() : UInt32
 			return @height unless height == nil
@@ -68,6 +77,15 @@ module Glass
 	end
 
 	class HorizontalContainer < Container
+		@widget_width : UInt32 = 0_u32
+		def +(*widgets : Widget)
+			widgets.each do |widget|
+				widget.set_parent self
+				widget.set_pos @widget_width, 0_u32
+				@widget_widget += widget.width
+				@childs << widget
+			end
+		end
 
 		def height() : UInt32
 			return @height unless height == nil

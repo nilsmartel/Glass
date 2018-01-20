@@ -29,11 +29,18 @@ module Glass
 			@parent = w
 		end
 
+		# Sets the Position Relative to it's parent and updates it's ImageClip
+		def set_pos(x, y : UInt32)
+			@image = parent.image.get_clip Point.new(x, y), width, height
+		end
+
 		# Render Widget
 		def render()
+			# Make sure you only iterate over the pixels you truly need
 			w = max width, image.width
 			h = max height, image.height
 
+			# Iterate over each vertical and horizontal pixel of this container
 			(0...w).each do |x|
 				(0...h).each do |y|
 					@image.set_pixel w, y, background_color
