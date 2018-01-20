@@ -1,33 +1,7 @@
 
-module Glass
+module SF
 	struct Color
-		property red : UInt8
-		property green : UInt8
-		property blue : UInt8
-		property alpha : UInt8
-
-		def initialize()
-			@red = 0_u8
-			@green = 0_u8
-			@blue = 0_u8
-			@alpha = 255_u8
-		end
-
-		def initialize(r, g, b : UInt8)
-			@red = r
-			@green = g
-			@blue = b
-			@alpha = 255_u8
-		end
-
-		def initialize(r, g, b, a : UInt8)
-			@red = r
-			@green = g
-			@blue = b
-			@alpha = a
-		end
-
-		def from_hsv(h, s, v : Float32) : Color
+		def from_hsv(h, s, v : Float32) : SF::Color
 			return new v*255, v*255, v*255 if s == 0
 
 			q = if l < 0.5
@@ -46,7 +20,7 @@ module Glass
 
 		end
 
-		def hue_to_rgb(p, q, t : Float32) : Float32
+		private def hue_to_rgb(p, q, t : Float32) : Float32
 			t += 1 if t < 0
 			t -= 1 if t > 1
 			return p + (q - p) * 6_f32 * t if t < 1_f32 / 6_f32

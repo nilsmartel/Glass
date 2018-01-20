@@ -2,19 +2,45 @@
 module Glass
 
 	class Container
-		@childs : Array(Container)
+		@childs : Array(Container) = [] of Container
 
 		def initialize()
-			@childs = [] of Array(Container)
+			@childs = [] of Container
+		end
+
+		def get_image() : SF::Image
+			@image.get_image
 		end
 
 		def render()
+			# TODO call super instead, stupid pieace o' shit
+
+			# Set's w and h to be the smaller Values of
+			# self.(width, height) and image.(width, height)
+			w = width > @image.width ? @image.width : width
+			h = height > @image.height ? @image.height : height
+
+			# Iterate over each vertical and horizontal pixel of this container
+			(0...w).each do |x|
+				(0...h).each do |y|
+					@image.set_pixel w, y, background_color
+				end
+			end
+
 			@childs.each do |widget|
 				widget.render
 			end
 		end
 
+		def width() : UInt32
+			return @width if @width
+			0
+		end
 
+		def height() : UInt32
+			return @heigth if @height
+			0
+		end
 
 		# TODO this method will deal with all the positioning shit
 		# Method to recalculte position and size of all childs
@@ -43,10 +69,15 @@ module Glass
 
 	class AbsolutContainer < Container
 
-		def initialize(@image : Image)
-			@width = image.width
-			@height = image.height
-			@image = image.to_clip
+		def initialize(@image : ImageClip)
+			@width = @image.width
+			@height = @image.height
+		end
+
+		def initialize(image : SF::Image)
+			@image = ImageClip.new image
+			@width = @image.width
+			@height = @image.height
 		end
 
 		# Add a Widget to the Container at Coordinates (x, y)

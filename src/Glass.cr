@@ -5,8 +5,12 @@ require "./Image"
 require "./UI/*"
 
 module Glass
+	# (TODO) Note:
+	# All of this code will move in a seperate Window Class
+	# To make things easier for everyone
+
 	# create the window
-	window = SF::RenderWindow.new(SF::VideoMode.new(800, 600), "My window")
+	window = SF::RenderWindow.new(SF::VideoMode.new(256, 256), "Glass GUI")
 
 	# run the program as long as the window is open
 	while window.open?
@@ -23,6 +27,9 @@ module Glass
 
 		# draw everything here...
 		# window.draw(...)
+		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256, SF::Color::Black))
+		ui.render()
+		sp = SF::Sprite.new SF::Texture.from_image ui.get_image
 
 		# end the current frame
 		window.display

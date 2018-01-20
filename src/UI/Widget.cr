@@ -6,7 +6,7 @@ module Glass
 		@height : UInt32 | Nil = 0_u32
 		@parent : Container | Nil
 		property image : ImageClip
-		property background_color : Color = Glass::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
+		property background_color = SF::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
 
 		def initialize(@image)
 
@@ -45,8 +45,8 @@ module Glass
 		# Render Widget
 		def render()
 			# Make sure you only iterate over the pixels you truly need
-			w = max width, image.width
-			h = max height, image.height
+			w = min width, @image.width
+			h = min height, @image.height
 
 			# Iterate over each vertical and horizontal pixel of this container
 			(0...w).each do |x|
@@ -68,4 +68,9 @@ end
 #returns the greater of two Numbers
 private def max(a, b : UInt32) : UInt32
 	a > b ? a : b
+end
+
+#returns the greater of two Numbers
+private def min(a, b : UInt32) : UInt32
+	a < b ? a : b
 end

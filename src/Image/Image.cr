@@ -2,38 +2,23 @@ require "../Color"
 require "../Point"
 
 module Glass
-	# Struct to represent an sRGBA Image
-	class Image
-		property width : UInt32
-		property height : UInt32
-		@data : Array(Color)
-
-		def initialize(@width, @height)
-			@data = Array.new(width * height) { Color.new() }
-		end
-
-		def set_pixel(x, y : Int, c : Color)
-			if check_bounds x, y, width, height
-				@data[x % width + y*width] = c
-			end
-		end
-
-		def set_pixel(pos : Point, c : Color)
-			set_pixel pos.x, pos.y, c
-		end
-
-		# Returns an ImageClip pointing to the Image
-		def to_clip() : ImageClip
-			ImageClip.new(self, pos.new(0,0), width, height)
-		end
-	end
-
 	# Represents an (Cropped) Sector from an Image
 	struct ImageClip
 		property pos : Point
 		property width : UInt32
 		property height : UInt32
-		@image : Image
+		@image : SF::Image
+
+		def get_image() : SF::Image
+			@image
+		end
+
+		# Create an ImageClip from an SF::Image
+		def initialize(@image : SF::Image)
+			@pos = Point.new 0, 0
+			@width = @image.size.x.to_u32
+			@height = @image.size.y.to_u32
+		end
 
 		def initialize(@image, @pos, @width, @height)
 		end
