@@ -1,10 +1,14 @@
 
+require "./Widget"
+
 module Glass
 
-	class Container
+	class Container < Widget
 		@childs : Array(Container) = [] of Container
 
-		def initialize()
+		def initialize(@image)
+			@width = 0_u32
+			@height= 0_u32
 			@childs = [] of Container
 		end
 
@@ -12,13 +16,20 @@ module Glass
 			@image.get_image
 		end
 
-		def render()
-			# TODO call super instead, stupid pieace o' shit
+		def set_height(y : UInt32 | Nil)
+			@height = y
+			@image = parent.image.get_clip @image.pos, width, height
+		end
 
-			# Set's w and h to be the smaller Values of
-			# self.(width, height) and image.(width, height)
-			w = width > @image.width ? @image.width : width
-			h = height > @image.height ? @image.height : height
+		def set_width(x : UInt32 | Nil)
+			@width = x
+			@image = parent.image.get_clip @image.pos, width, height
+		end
+
+		def render()
+			# TODO call super instead
+			w = @image.width
+			h = @image.height
 
 			# Iterate over each vertical and horizontal pixel of this container
 			(0...w).each do |x|
@@ -32,22 +43,6 @@ module Glass
 			end
 		end
 
-		def width() : UInt32
-			return @width if @width
-			0
-		end
-
-		def height() : UInt32
-			return @heigth if @height
-			0
-		end
-
-		# TODO this method will deal with all the positioning shit
-		# Method to recalculte position and size of all childs
-		# and furthermore, assign adjusted ImageClips
-		def on_update()
-		end
-
 		def +(*widgets : Widget)
 		  widgets.each do |widget|
 				widget.set_parent self
@@ -56,14 +51,10 @@ module Glass
 			end
 		end
 
-		def height(y : UInt32 | Nil)
-			@height = y
-			@image = parent.image.get_clip @image.pos, width, height
-		end
-
-		def width(x : UInt32 | Nil)
-			@width = x
-			@image = parent.image.get_clip @image.pos, width, height
+		# TODO this method will deal with all the positioning shit
+		# Method to recalculte position and size of all childs
+		# and furthermore, assign adjusted ImageClips
+		def on_update()
 		end
 	end
 

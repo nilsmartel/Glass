@@ -16,22 +16,16 @@ module Glass
 	while window.open?
 		# check all the window's events that were triggered since the last iteration of the loop
 		while event = window.poll_event
-			# "close requested" event: we close the window
-			if event.is_a? SF::Event::Closed
-				window.close
-			end
+			window.close if event.is_a? SF::Event::Closed
 		end
 
-		# clear the window with black color
-		window.clear(SF::Color::Black)
-
 		# draw everything here...
-		# window.draw(...)
-		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256, SF::Color::Black))
+		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256))
+		# somethings fucked here
 		ui.render()
 		sp = SF::Sprite.new SF::Texture.from_image ui.get_image
+		window.draw(sp)
 
-		# end the current frame
 		window.display
 	end
 end

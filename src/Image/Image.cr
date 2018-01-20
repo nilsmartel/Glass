@@ -2,6 +2,7 @@ require "../Color"
 require "../Point"
 
 module Glass
+
 	# Represents an (Cropped) Sector from an Image
 	struct ImageClip
 		property pos : Point
@@ -23,13 +24,13 @@ module Glass
 		def initialize(@image, @pos, @width, @height)
 		end
 
-		def set_pixel(x, y : Int, c : Color)
-			if check_bounds x, y, width, height
-				image.set_pixel x, y, c
+		def set_pixel(x, y : Int, c : SF::Color)
+			if (check_bounds x, y) #&& check_bounds x, y, @image.size
+				@image.set_pixel x, y, c
 			end
 		end
 
-		def set_pixel(pos : Point, c : Color)
+		def set_pixel(pos : Point, c : SF::Color)
 			set_pixel pos.x, pos.y, c
 		end
 
@@ -50,13 +51,21 @@ module Glass
 
 			new @image, p, w, h
 		end
-	end
 
-	private def check_bounds(pos : Point, width, height : Number) : Bool
-		return check_bounds pos.x, pos.y, width, height
-	end
+		private def check_bounds(x, y : Number) : Bool
+			check_bounds x, y, @width, @height
+		end
 
-	private def check_bounds(x, y, width, height : Number) : Bool
-		return !(x < 0 || x > width || y < 0 || y > height)
+		# private def check_bounds(x, y : Number, v : SF::Vector2u) : Bool
+		# 	check_bounds x, y, v.x.to_i32, v.y.to_i32
+		# end
+
+		private def check_bounds(pos : Point, width, height : Number) : Bool
+			return check_bounds pos.x, pos.y, width, height
+		end
+
+		private def check_bounds(x, y, width, height : Number) : Bool
+			return !(x < 0 || x >= width || y < 0 || y >= height)
+		end
 	end
 end
