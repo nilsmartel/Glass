@@ -42,47 +42,55 @@ module Glass
 
 	class VerticalContainer < Container
 
-		def height()
+		def height() : UInt32
 			return @height unless height == nil
-			@height = 0
+			h = 0_u32
 
 			@childs.each do |widget|
-				@childs += widget.height unless widget.height == nil
+				h += widget.height unless widget.height == nil
 			end
+
+			h
 		end
 
-		def width()
+		def width() : UInt 32
 			return @width unless width == nil
-			@width = 0
+			w = 0
 
 			@childs.each do |widget|
 				if widget.width
-					@width = widget.width if widget.width > @width
+					w = widget.width if widget.width > w
 				end
 			end
+
+			w
 		end
 	end
 
 	class HorizontalContainer < Container
 
-		def height()
+		def height() : UInt32
 			return @height unless height == nil
-			@heightt = 0
+			h = 0_u32
 
 			@childs.each do |widget|
 				if widget.height
-					@height = widget.height if widget.height > @height
+					h = widget.height if widget.height > h
 				end
 			end
+
+			h
 		end
 
-		def width()
-			return @height unless height == nil
-			@width = 0
+		def width() : UInt32
+			return @width unless width == nil
+			w = 0_u32
 
 			@childs.each do |widget|
-				@width += widget.width unless widget.width == nil
+				w += widget.width unless widget.width == nil
 			end
+
+			w
 		end
 	end
 end
