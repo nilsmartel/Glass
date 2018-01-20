@@ -8,10 +8,10 @@ module Glass
 		def initialize(@x, @y)
 		end
 
-		def initialize(px, py : Numbers)
-			@x = px.to(Int32)
-			@y = py.to(Int32)
-		end
+		# def initialize(px, py : Numbers)
+		# 	@x = px.to(Int32)
+		# 	@y = py.to(Int32)
+		# end
 
 		def +(p : Point) : Point
 			new x+p.x, y+p.y

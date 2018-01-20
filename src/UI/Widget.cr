@@ -30,8 +30,16 @@ module Glass
 		end
 
 		# Sets the Position Relative to it's parent and updates it's ImageClip
-		def set_pos(x, y : UInt32)
+		def set_pos(x, y : Int32)
 			@image = parent.image.get_clip Point.new(x, y), width, height
+		end
+
+		def set_pos(p : Point)
+			set_pos p.x, p.y
+		end
+
+		def get_pos() : Point
+			@image.pos
 		end
 
 		# Render Widget

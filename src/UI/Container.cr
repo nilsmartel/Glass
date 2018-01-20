@@ -25,6 +25,7 @@ module Glass
 		def +(*widgets : Widget)
 		  widgets.each do |widget|
 				widget.set_parent self
+				widget.set_pos 0, 0
 				@childs << widget
 			end
 		end
@@ -40,12 +41,39 @@ module Glass
 		end
 	end
 
+	class AbsolutContainer < Container
+
+		def initialize(@image : Image)
+			@width = image.width
+			@height = image.height
+			@image = image.to_clip
+		end
+
+		# Add a Widget to the Container at Coordinates (x, y)
+		def +(widget, x, y : Int32)
+			widget.set_parent self
+			widget.set_pos 0, 0
+			@childs << widget
+		end
+
+		# Move all Elements inside of the Container
+		def move_content(p : Point)
+			@childs.each do |widget|
+				widget.set_pos widget.get_pos + p
+			end
+		end
+
+		def move_content(x, y : Int 32)
+			move_content Point.new x, y
+		end
+end
+
 	class VerticalContainer < Container
 		@widget_height : UInt32 = 0_u32
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
-				widget.set_pos 0_u32, @widget_height
+				widget.set_pos 0, @widget_height.to(Int32)
 				@widget_height += widget.height
 				@childs << widget
 			end
@@ -81,7 +109,7 @@ module Glass
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
-				widget.set_pos @widget_width, 0_u32
+				widget.set_pos @widget_width.to(Int32), 0
 				@widget_widget += widget.width
 				@childs << widget
 			end
