@@ -63,7 +63,7 @@ module Glass
 			end
 		end
 
-		def move_content(x, y : Int 32)
+		def move_content(x, y : Int32)
 			move_content Point.new x, y
 		end
 end
@@ -90,7 +90,7 @@ end
 			h
 		end
 
-		def width() : UInt 32
+		def width() : UInt32
 			return @width unless width == nil
 			w = 0
 
