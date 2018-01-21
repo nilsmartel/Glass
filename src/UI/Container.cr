@@ -93,6 +93,7 @@ module Glass
 
 	class VerticalContainer < Container
 		@widget_height : UInt32 = 0_u32
+
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
@@ -103,7 +104,7 @@ module Glass
 		end
 
 		def height() : UInt32
-			unless (y = @height).is_a?(Nil)
+			unless (y = @height).nil?
 				return y
 			end
 
@@ -117,7 +118,7 @@ module Glass
 		end
 
 		def width() : UInt32
-			unless (x = @width).is_a?(Nil)
+			unless (x = @width).nil?
 				return x
 			end
 			w = 0_u32
@@ -132,6 +133,7 @@ module Glass
 
 	class HorizontalContainer < Container
 		@widget_width : UInt32 = 0_u32
+
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
@@ -142,7 +144,7 @@ module Glass
 		end
 
 		def height() : UInt32
-			unless (y = @height).is_a?(Nil)
+			unless (y = @height).nil?
 				return y
 			end
 
@@ -156,7 +158,7 @@ module Glass
 		end
 
 		def width() : UInt32
-			unless (x = @width).is_a?(Nil)
+			unless (x = @width).nil?
 				return x
 			end
 

@@ -13,12 +13,16 @@ module Glass
 
 		# Returns width of Widget or 0 (if width equals nil)
 		def width()
-			@width.to_u32
+			unless (w = @width).nil?
+				return w
+			end
+
+			0_u32
 		end
 
 		# Returns height of Widget or 0 (if height equals nil)
 		def height() : UInt32
-			unless (h = @height).is_a?(Nil)
+			unless (h = @height).nil?
 				return h
 			end
 			0_u32
@@ -62,12 +66,6 @@ module Glass
 		#
 		# will be fun anyways, but non-the-less.
 		# It will take some time untill I implement this
-	end
-end
-
-struct Nil
-	def to_u32() : UInt32
-		0_u32
 	end
 end
 
