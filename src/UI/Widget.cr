@@ -11,20 +11,19 @@ module Glass
 		def initialize(@image)
 		end
 
-		# TODO can't fix this, ask for Support.
-		# This is getting weird
 		# Returns width of Widget or 0 (if width equals nil)
 		def width() : UInt32
-			unless @width == nil
-				return @width
-			else
-				return 0_u32
+			unless (w = @width).is_a?(Nil)
+				return w
 			end
+			0_u32
 		end
 
 		# Returns height of Widget or 0 (if height equals nil)
 		def height() : UInt32
-			return @height if @height
+			unless (h = @height).is_a?(Nil)
+				return h
+			end
 			0_u32
 		end
 

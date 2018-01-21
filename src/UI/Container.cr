@@ -26,7 +26,7 @@ module Glass
 			@image = parent.image.get_clip @image.pos, width, height
 		end
 
-		def render()
+		def render_()
 			# Just for Testing purpose
 			render_test()
 			@childs.each do |widget|

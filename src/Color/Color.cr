@@ -1,4 +1,8 @@
 
+# This File simply extends the functionality of SF::Color
+# for later use
+#
+# I'm pretty sure this will come in handy later
 module SF
 	struct Color
 		def from_hsv(h, s, v : Float32) : SF::Color
