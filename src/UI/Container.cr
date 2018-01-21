@@ -26,9 +26,9 @@ module Glass
 			@image = parent.image.get_clip @image.pos, width, height
 		end
 
-		def render_()
-			# Just for Testing purpose
-			render_test()
+		def render()
+			super
+
 			@childs.each do |widget|
 				widget.render
 			end
@@ -103,24 +103,27 @@ module Glass
 		end
 
 		def height() : UInt32
-			return @height unless height == nil
+			unless (y = @height).is_a?(Nil)
+				return y
+			end
+
 			h = 0_u32
 
 			@childs.each do |widget|
-				h += widget.height unless widget.height == nil
+				h += widget.height
 			end
 
 			h
 		end
 
 		def width() : UInt32
-			return @width unless width == nil
-			w = 0
+			unless (x = @width).is_a?(Nil)
+				return x
+			end
+			w = 0_u32
 
 			@childs.each do |widget|
-				if widget.width
-					w = widget.width if widget.width > w
-				end
+				w = widget.width if widget.width > w
 			end
 
 			w
@@ -139,24 +142,28 @@ module Glass
 		end
 
 		def height() : UInt32
-			return @height unless height == nil
+			unless (y = @height).is_a?(Nil)
+				return y
+			end
+
 			h = 0_u32
 
 			@childs.each do |widget|
-				if widget.height
-					h = widget.height if widget.height > h
-				end
+				h = widget.height if widget.height > h
 			end
 
 			h
 		end
 
 		def width() : UInt32
-			return @width unless width == nil
+			unless (x = @width).is_a?(Nil)
+				return x
+			end
+
 			w = 0_u32
 
 			@childs.each do |widget|
-				w += widget.width unless widget.width == nil
+				w += widget.width
 			end
 
 			w
