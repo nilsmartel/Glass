@@ -21,10 +21,13 @@ module Glass
 
 		# draw everything here...
 		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256))
+		# ui + Glass::Example.new()
 		# somethings fucked here
 		ui.render()
-		sp = SF::Sprite.new SF::Texture.from_image ui.get_image
-		window.draw(sp)
+		unless (i = ui.get_image).nil?
+			sp = SF::Sprite.new SF::Texture.from_image i
+			window.draw(sp)
+		end
 
 		window.display
 	end

@@ -5,7 +5,7 @@ module Glass
 		@width  : UInt32 | Nil = nil
 		@height : UInt32 | Nil = nil
 		@parent : Container | Nil = nil
-		property image : ImageClip
+		property image : ImageClip | Nil
 		property background_color = SF::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
 
 		def initialize(@image)
@@ -34,7 +34,9 @@ module Glass
 
 		# Sets the Position Relative to it's parent and updates it's ImageClip
 		def set_pos(x, y : Int32)
-			@image = parent.image.get_clip Point.new(x, y), width, height
+			unless (i = parent.image).nil?
+				@image = i.get_clip Point.new(x, y), width, height
+			end
 		end
 
 		def set_pos(p : Point)
@@ -42,20 +44,26 @@ module Glass
 		end
 
 		def get_pos() : Point
-			@image.pos
+			unless (i = @image).nil?
+				return i.pos
+			end
+
+			# TODO does this even make sense?
+			Point.new(0, 0)
 		end
 
 		# Render Widget
 		def render()
 			# Make sure you only iterate over the pixels you truly need
-			# w = min width, @image.width.to_u32
-			w = width < @image.width ? width : @image.width
-			h = min height, @image.height
+			unless (i = @image).nil?
+				w = min width , i.width
+				h = min height, i.height
 
-			# Iterate over each vertical and horizontal pixel of this container
-			(0...w).each do |x|
-				(0...h).each do |y|
-					@image.set_pixel w, y, background_color
+				# Iterate over each vertical and horizontal pixel of this container
+				(0...w).each do |x|
+					(0...h).each do |y|
+						i.set_pixel w, y, background_color
+					end
 				end
 			end
 		end

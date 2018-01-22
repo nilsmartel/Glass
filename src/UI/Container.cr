@@ -12,8 +12,11 @@ module Glass
 			@childs = [] of Container
 		end
 
-		def get_image() : SF::Image
-			@image.get_image
+		def get_image() : SF::Image | Nil
+			unless (i = @image).nil?
+				return i.get_image
+			end
+			
 		end
 
 		def set_height(y : UInt32 | Nil)
@@ -67,9 +70,10 @@ module Glass
 		end
 
 		def initialize(image : SF::Image)
-			@image = ImageClip.new image
-			@width = @image.width
-			@height = @image.height
+			i = ImageClip.new image
+			@width = i.width
+			@height = i.height
+			@image = i
 		end
 
 		# Add a Widget to the Container at Coordinates (x, y)
