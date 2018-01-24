@@ -75,6 +75,9 @@ def fake_render(img : Glass::ImageClip)
 	# HAH, this shit doesn't even work!
 	#
 	# Found Bug??!
+	#
+	# Set's the Clip Relative to the raw (0, 0) Coordinates of the main Image,
+	# not relative to clips position!
 	clip2 = clip.get_clip(
 		Glass::Point.new(16, 16),
 		32_u32,

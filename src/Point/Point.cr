@@ -14,19 +14,19 @@ module Glass
 		# end
 
 		def +(p : Point) : Point
-			new x+p.x, y+p.y
+			Point.new x+p.x, y+p.y
 	 	end
 
 		def -(p : Point) : Point
-			new x-p.x, y-p.y
+			Point.new x-p.x, y-p.y
 	 	end
 
 		def *(s) : Point
-			new x*s, y*s
+			Point.new x*s, y*s
 		end
 
 		def abs() : Point
-			new x.abs, y.abs
+			Point.new x.abs, y.abs
 		end
 
 		# TODO add Bunch of Methods for Subtracting, Adding etc.

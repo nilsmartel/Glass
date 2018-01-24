@@ -51,7 +51,7 @@ module Glass
 				h = p.y + @height
 			end
 
-			ImageClip.new @image, p, w.to_u32, h.to_u32
+			ImageClip.new @image, pos + p, w.to_u32, h.to_u32
 		end
 
 		private def check_bounds(x, y : Number) : Bool
