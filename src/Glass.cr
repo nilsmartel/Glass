@@ -20,18 +20,41 @@ module Glass
 		end
 
 		# draw everything here...
-		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256))
-		hc = Glass::HorizontalContainer.new(nil)
-		ui + hc
-		hc + Glass::Example.new(nil, SF::Color.new(128,243,32))
-		# ui + Glass::Example.new()
-		# somethings fucked here
-		ui.render()
+		ui = new_ui
 		unless (i = ui.get_image).nil?
 			sp = SF::Sprite.new SF::Texture.from_image i
 			window.draw(sp)
 		end
 
 		window.display
+	end
+end
+
+def new_ui() : Glass::Widget
+	img = SF::Image.new(256, 256)
+	ui = Glass::AbsolutContainer.new(img)
+	ui.background_color = SF::Color.new(64_u8, 64_u8, 64_u8)
+	# doesn't fucking work
+	container = Glass::HorizontalContainer.new()
+	container + Glass::Example.new(128_u8, 64_u8, 32_u8)
+	container + Glass::Example.new(32_u8, 128_u8, 64_u8)
+	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
+	ui + container
+	# This Method most definitly Calls all it's children render functions
+	ui.render()
+
+	fake_render Glass::ImageClip.new img
+
+	ui
+end
+
+def fake_render(img : Glass::ImageClip)
+	# So, this shit works. Nice
+	(0...255_u8).each do |x|
+		(0...255_u8).each do |y|
+			if (x*y) % 4 == 0
+				img.set_pixel x, y, SF::Color.new(x, y, 255_u8)
+			end
+		end
 	end
 end

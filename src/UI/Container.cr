@@ -1,6 +1,9 @@
 
 require "./Widget"
 
+# Implement function to set position of children!
+# Called when Parents position gets setted
+
 module Glass
 
 	class Container < Widget
@@ -26,6 +29,21 @@ module Glass
 		def set_width(x : UInt32 | Nil)
 			@width = x
 			@image = parent.image.get_clip @image.pos, width, height
+		end
+
+		# Sets the Position Relative to it's parent and updates it's ImageClip
+		# Furthermore this method calls `set_pos` on all of it's children
+		def set_pos(x, y : Int32)
+			super x, y
+			childs = @childs
+			@childs = [] of Widget
+			childs.each do |widget|
+				self + widget
+			end
+		end
+
+		def set_pos(p : Point)
+			set_pos p.x, p.y
 		end
 
 		def render()
@@ -78,7 +96,7 @@ module Glass
 		# Add a Widget to the Container at Coordinates (x, y)
 		def +(widget, x, y : Int32)
 			widget.set_parent self
-			widget.set_pos 0, 0
+			widget.set_pos x, y
 			@childs << widget
 		end
 
@@ -104,6 +122,11 @@ module Glass
 				@widget_height += widget.height
 				@childs << widget
 			end
+		end
+
+		def set_pos(x, y : Int32)
+			@widget_height = 0_u32
+			super x, y
 		end
 
 		def height() : UInt32
@@ -144,6 +167,11 @@ module Glass
 				@widget_width += widget.width
 				@childs << widget
 			end
+		end
+
+		def set_pos(x, y : Int32)
+			@widget_width = 0_u32
+			super x, y
 		end
 
 		def height() : UInt32

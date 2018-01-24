@@ -45,6 +45,14 @@ module Glass
 			set_pos p.x, p.y
 		end
 
+		def set_pos()
+			unless (p = @parent).nil?
+				unless (i = p.image).nil?
+					@image = i.get_clip get_pos, width, height
+				end
+			end
+		end
+
 		def get_pos() : Point
 			unless (i = @image).nil?
 				return i.pos
@@ -60,7 +68,6 @@ module Glass
 			unless (i = @image).nil?
 				w = min width , i.width
 				h = min height, i.height
-
 				# Iterate over each vertical and horizontal pixel of this container
 				(0...w).each do |x|
 					(0...h).each do |y|
