@@ -26,6 +26,8 @@ module Glass
 
 		def set_pixel(x, y : Int, c : SF::Color)
 			if (check_bounds x, y) #&& check_bounds x, y, @image.size
+				x += @pos.x
+				y += @pos.y
 				@image.set_pixel x, y, c
 			end
 		end

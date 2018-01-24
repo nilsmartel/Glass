@@ -43,7 +43,7 @@ def new_ui() : Glass::Widget
 	# This Method most definitly Calls all it's children render functions
 	ui.render()
 
-	fake_render Glass::ImageClip.new img
+	# fake_render Glass::ImageClip.new img
 
 	ui
 end
@@ -58,9 +58,6 @@ def fake_render(img : Glass::ImageClip)
 		end
 	end
 
-	# TODO
-	# The Image get's rendered at the top-left Corner at Coordinates(0,0)
-	# there's a bug (in ```Glass::ImageClip```). Oh boi!
 	clip = img.get_clip(
 		Glass::Point.new(64, 64),
 		128_u32,
@@ -69,7 +66,7 @@ def fake_render(img : Glass::ImageClip)
 
 	(0...128_u8).each do |x|
 		(0...128_u8).each do |y|
-			clip.set_pixel x, y, SF::Color.new(y, x, 128_u8)
+			clip.set_pixel x, y, SF::Color.new(255 - y, 255 - x, 128_u8)
 		end
 	end
 end
