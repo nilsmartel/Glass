@@ -21,6 +21,9 @@ module Glass
 
 		# draw everything here...
 		ui = Glass::AbsolutContainer.new(SF::Image.new(256, 256))
+		hc = Glass::HorizontalContainer.new(nil)
+		ui + hc
+		hc + Glass::Example.new(nil, SF::Color.new(128,243,32))
 		# ui + Glass::Example.new()
 		# somethings fucked here
 		ui.render()

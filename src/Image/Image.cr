@@ -48,8 +48,8 @@ module Glass
 			elsif h > p.y + @height
 				h = p.y + @height
 			end
-
-			new @image, p, w, h
+			
+			ImageClip.new @image, p, w.to_u32, h.to_u32
 		end
 
 		private def check_bounds(x, y : Number) : Bool

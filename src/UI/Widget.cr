@@ -4,7 +4,7 @@ module Glass
 	class Widget
 		@width  : UInt32 | Nil = nil
 		@height : UInt32 | Nil = nil
-		@parent : Container | Nil = nil
+		@parent : Widget | Nil = nil
 		property image : ImageClip | Nil
 		property background_color = SF::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
 
@@ -34,8 +34,10 @@ module Glass
 
 		# Sets the Position Relative to it's parent and updates it's ImageClip
 		def set_pos(x, y : Int32)
-			unless (i = parent.image).nil?
-				@image = i.get_clip Point.new(x, y), width, height
+			unless (p = @parent).nil?
+				unless (i = p.image).nil?
+					@image = i.get_clip Point.new(x, y), width, height
+				end
 			end
 		end
 

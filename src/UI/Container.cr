@@ -4,19 +4,18 @@ require "./Widget"
 module Glass
 
 	class Container < Widget
-		@childs : Array(Container) = [] of Container
+		@childs : Array(Widget) = [] of Widget
 
 		def initialize(@image)
 			@width = 0_u32
 			@height= 0_u32
-			@childs = [] of Container
 		end
 
 		def get_image() : SF::Image | Nil
 			unless (i = @image).nil?
 				return i.get_image
 			end
-			
+
 		end
 
 		def set_height(y : UInt32 | Nil)
@@ -101,7 +100,7 @@ module Glass
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
-				widget.set_pos 0, @widget_height.to(Int32)
+				widget.set_pos 0, @widget_height.to_i32
 				@widget_height += widget.height
 				@childs << widget
 			end
@@ -141,8 +140,8 @@ module Glass
 		def +(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
-				widget.set_pos @widget_width.to(Int32), 0
-				@widget_widget += widget.width
+				widget.set_pos @widget_width.to_i32, 0
+				@widget_width += widget.width
 				@childs << widget
 			end
 		end
