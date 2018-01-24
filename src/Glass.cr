@@ -71,6 +71,10 @@ def fake_render(img : Glass::ImageClip)
 		end
 	end
 
+	# TODO
+	# HAH, this shit doesn't even work!
+	#
+	# Found Bug??!
 	clip2 = clip.get_clip(
 		Glass::Point.new(16, 16),
 		32_u32,
