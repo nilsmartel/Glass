@@ -69,7 +69,7 @@ def fake_render(img : Glass::ImageClip)
 
 	(0...128_u8).each do |x|
 		(0...128_u8).each do |y|
-			clip.set_pixel x, y, SF::Color.new(y*2, x*2, 128_u8)
+			clip.set_pixel x, y, SF::Color.new(y, x, 128_u8)
 		end
 	end
 end

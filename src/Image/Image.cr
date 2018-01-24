@@ -48,7 +48,7 @@ module Glass
 			elsif h > p.y + @height
 				h = p.y + @height
 			end
-			
+
 			ImageClip.new @image, p, w.to_u32, h.to_u32
 		end
 
