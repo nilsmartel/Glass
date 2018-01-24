@@ -6,9 +6,9 @@ module Glass
 	class Container < Widget
 		@childs : Array(Widget) = [] of Widget
 
-		def initialize(@image)
-			@width = 0_u32
-			@height= 0_u32
+		def initialize()
+			@width = nil
+			@height= nil
 		end
 
 		def get_image() : SF::Image | Nil
