@@ -81,9 +81,10 @@ module Glass
 
 	class AbsolutContainer < Container
 
-		def initialize(@image : ImageClip)
-			@width = @image.width
-			@height = @image.height
+		def initialize(i : ImageClip)
+			@width = i.width
+			@height = i.height
+			@image = i
 		end
 
 		def initialize(image : SF::Image)

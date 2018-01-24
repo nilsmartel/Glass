@@ -40,11 +40,12 @@ def new_ui() : Glass::Widget
 	container + Glass::Example.new(32_u8, 128_u8, 64_u8)
 	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
 	ui + container
+
+	fake_render Glass::ImageClip.new img
+	
 	# This Method most definitly Calls all it's children render functions
 	# it still does not fucking work
 	ui.render()
-
-	fake_render Glass::ImageClip.new img
 	ui
 end
 
