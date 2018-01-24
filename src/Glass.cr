@@ -41,10 +41,10 @@ def new_ui() : Glass::Widget
 	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
 	ui + container
 	# This Method most definitly Calls all it's children render functions
+	# it still does not fucking work
 	ui.render()
 
 	fake_render Glass::ImageClip.new img
-
 	ui
 end
 
@@ -79,7 +79,7 @@ def fake_render(img : Glass::ImageClip)
 	# Set's the Clip Relative to the raw (0, 0) Coordinates of the main Image,
 	# not relative to clips position!
 	clip2 = clip.get_clip(
-		Glass::Point.new(16, 16),
+		Glass::Point.new(120, 16),
 		32_u32,
 		32_u32
 	)

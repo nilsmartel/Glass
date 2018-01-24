@@ -41,14 +41,14 @@ module Glass
 		def get_clip(p : Point, w, h : UInt32) : ImageClip
 			if p.x > @width
 				w = 0
-			elsif w > p.x + @width
-				w = pos.x + @width
+			elsif p.x + w > @width
+				w = @width - p.x
 			end
 
 			if p.y > @height
 				h = 0
-			elsif h > p.y + @height
-				h = p.y + @height
+			elsif p.y + h > @height
+				h = @height - p.y
 			end
 
 			ImageClip.new @image, pos + p, w.to_u32, h.to_u32
