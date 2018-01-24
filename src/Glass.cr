@@ -50,6 +50,7 @@ end
 
 def fake_render(img : Glass::ImageClip)
 	# So, this shit works. Nice
+	# So far ImageClip doesn't seem to be the Problem
 	(0..255_u8).each do |x|
 		(0..255_u8).each do |y|
 			if (x*y) % 4 == 0
