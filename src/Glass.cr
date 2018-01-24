@@ -50,11 +50,26 @@ end
 
 def fake_render(img : Glass::ImageClip)
 	# So, this shit works. Nice
-	(0...255_u8).each do |x|
-		(0...255_u8).each do |y|
+	(0..255_u8).each do |x|
+		(0..255_u8).each do |y|
 			if (x*y) % 4 == 0
 				img.set_pixel x, y, SF::Color.new(x, y, 255_u8)
 			end
+		end
+	end
+
+	# TODO
+	# The Image get's rendered at the top-left Corner at Coordinates(0,0)
+	# there's a bug (in ```Glass::ImageClip```). Oh boi!
+	clip = img.get_clip(
+		Glass::Point.new(64, 64),
+		128_u32,
+		128_u32
+	)
+
+	(0...128_u8).each do |x|
+		(0...128_u8).each do |y|
+			clip.set_pixel x, y, SF::Color.new(y*2, x*2, 128_u8)
 		end
 	end
 end
