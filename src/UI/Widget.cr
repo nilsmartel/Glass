@@ -71,7 +71,7 @@ module Glass
 				# Iterate over each vertical and horizontal pixel of this container
 				(0...w).each do |x|
 					(0...h).each do |y|
-						i.set_pixel w, y, background_color
+						i.set_pixel x, y, @background_color
 					end
 				end
 			end

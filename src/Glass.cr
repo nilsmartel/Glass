@@ -35,14 +35,14 @@ def new_ui() : Glass::Widget
 	ui = Glass::AbsolutContainer.new(img)
 	ui.background_color = SF::Color.new(64_u8, 64_u8, 64_u8)
 	# doesn't fucking work
-	container = Glass::HorizontalContainer.new()
+	container = Glass::VerticalContainer.new()
 	container + Glass::Example.new(128_u8, 64_u8, 32_u8)
 	container + Glass::Example.new(32_u8, 128_u8, 64_u8)
 	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
 	ui + container
 
-	fake_render Glass::ImageClip.new img
-	
+	# fake_render Glass::ImageClip.new img
+
 	# This Method most definitly Calls all it's children render functions
 	# it still does not fucking work
 	ui.render()
