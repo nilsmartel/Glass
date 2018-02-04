@@ -1,9 +1,11 @@
 
+require "../Percent"
+
 module Glass
 
 	class Widget
-		@width  : UInt32 | Nil = nil
-		@height : UInt32 | Nil = nil
+		@width  : UInt32 | Nil | Percent = nil
+		@height : UInt32 | Nil | Percent = nil
 		@parent : Widget | Nil = nil
 		property image : ImageClip | Nil
 		property background_color = SF::Color.new(128_u8, 128_u8, 128_u8, 255_u8)
@@ -23,7 +25,17 @@ module Glass
 		# Returns height of Widget or 0 (if height equals nil)
 		def height() : UInt32
 			unless (h = @height).nil?
-				return h
+				if h.is_a?(UInt32)
+					return h
+				else
+					# height is relative to parent
+					# get Parents height here
+					#
+					# make sure, that it isn't dependend on Childs height
+					#
+					# return percentage of Parents height
+					0_u32
+				end
 			end
 			0_u32
 		end
