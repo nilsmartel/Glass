@@ -2,6 +2,7 @@
 
 (W.I.P) GUI Library written in Crystal
 
+
 ## Contributing
 
 1. Fork it ( https://github.com/sombrastudios/Glass/fork )
@@ -13,3 +14,9 @@
 ## Contributors
 
 * [[sombrastudios]](https://github.com/sombrastudios) sombrastudios - creator, maintainer
+
+
+
+---
+
+Sorry man, I just did not found the time, to continue this project 
