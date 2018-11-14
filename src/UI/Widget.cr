@@ -20,7 +20,7 @@ module Glass
 					return w
 				else
 				    if (p = @parent).is_a?(Widget)
-                        return w * p.width
+                        return (w * p.width).to_u32
                     else
                         raise "width of Widget could not be determined"
                     end
@@ -37,7 +37,7 @@ module Glass
 					return h
 				else
 				    if (p = @parent).is_a?(Widget)
-                        return h * p.height
+                        return (h * p.height).to_u32
                     else
                         raise "Height of Widget could not be determined"
                     end
