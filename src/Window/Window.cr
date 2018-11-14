@@ -1,20 +1,53 @@
-
-require "../UI/*"
+require "crsfml"
+require "../UI/Widget"
 
 module Glass
 	class Window
-		@width : UInt32
-		@height : UInt32
+        @window : SF::RenderWindow
+		@widget : Widget = Widget.new(nil)
+		
+        def initialize(title : String, width : Int32, height : Int32)
+            @window = SF::RenderWindow.new(
+                SF::VideoMode.new(width, height), title
+            )
+        end
 
-		@widget: Widget = Widget(Nil)
+        def initialize(title : String, @widget : Widget)
+            @window = SF::RenderWindow.new(
+                SF::VideoMode.new(
+                    @widget.width.to_i32,
+                    @widget.height.to_i32
+                ), 
+                title
+            )
 
-		## TODO: check agains min_widht  and min_height
+        end
 
-		def initialize
-			@width = 512
-			@height = 256
-		end
+        def set_widget(widget : Widget)
+            @widget = widget
+        end
+        
+        def render
+            @widget.render
 
-		def initialize(@width, @height) end
+            unless (img = @widget.get_image).nil?
+                sprite = SF::Sprite.new SF::Texture.from_image img
+                @window.draw sprite
+            end
+            
+            @display
+        end
+
+        def display
+            if @window.open?
+                @window.display
+            else
+                raise "Tried to display closed window"
+            end
+        end
+        
+        def open?
+            @window.open?
+        end
 	end
 end
