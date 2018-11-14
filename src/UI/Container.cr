@@ -132,7 +132,7 @@ module Glass
 
 		def height() : UInt32
 			unless (y = @height).nil?
-				return y
+				return super
 			end
 
 			h = 0_u32
@@ -146,7 +146,7 @@ module Glass
 
 		def width() : UInt32
 			unless (x = @width).nil?
-				return x
+				return super
 			end
 			w = 0_u32
 
@@ -177,7 +177,7 @@ module Glass
 
 		def height() : UInt32
 			unless (y = @height).nil?
-				return y
+				return super
 			end
 
 			h = 0_u32
@@ -191,10 +191,10 @@ module Glass
 
 		def width() : UInt32
 			unless (x = @width).nil?
-				return x
+				return super
 			end
 
-			w = 0_u32
+			w : UInt32 = 0_u32
 
 			@childs.each do |widget|
 				w += widget.width
