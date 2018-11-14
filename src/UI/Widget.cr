@@ -13,6 +13,9 @@ module Glass
 		def initialize(@image)
 		end
 
+		## TODO Write min_width and min_height methods
+		# Used to determine minimal required size
+
 		# Returns width of Widget or 0 (if width equals nil)
 		def width() : UInt32
 			unless (w = @width).nil?
