@@ -14,12 +14,20 @@ module Glass
 		end
 
 		# Returns width of Widget or 0 (if width equals nil)
-		def width()
+		def width() : UInt32
 			unless (w = @width).nil?
-				return w
+				if w.is_a?(UInt32)
+					return w
+				else
+				    if (p = @parent).is_a?(Widget)
+                        return w * p.width
+                    else
+                        raise "width of Widget could not be determined"
+                    end
+                end
 			end
 
-			0_u32
+            0_u32
 		end
 
 		# Returns height of Widget or 0 (if height equals nil)
@@ -28,15 +36,14 @@ module Glass
 				if h.is_a?(UInt32)
 					return h
 				else
-					# height is relative to parent
-					# get Parents height here
-					#
-					# make sure, that it isn't dependend on Childs height
-					#
-					# return percentage of Parents height
-					0_u32
-				end
+				    if (p = @parent).is_a?(Widget)
+                        return h * p.height
+                    else
+                        raise "Height of Widget could not be determined"
+                    end
+                end
 			end
+
 			0_u32
 		end
 
