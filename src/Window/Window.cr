@@ -20,9 +20,12 @@ module Glass
                 ), 
                 title
             )
-
         end
-
+        
+        def window
+            @window
+        end
+            
         def set_widget(widget : Widget)
             @widget = widget
         end
