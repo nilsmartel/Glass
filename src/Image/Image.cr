@@ -1,5 +1,6 @@
 require "../Color"
 require "../Point"
+require "crsfml"
 
 module Glass
 

@@ -27,7 +27,7 @@ module Glass
             @widget = widget
         end
         
-        def render
+        def render : Nil
             @widget.render
 
             unless (img = @widget.get_image).nil?
@@ -35,7 +35,7 @@ module Glass
                 @window.draw sprite
             end
             
-            @display
+            @window.display
         end
 
         def display

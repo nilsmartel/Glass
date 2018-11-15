@@ -1,5 +1,7 @@
 
+require "crsfml"
 require "../Percent"
+require "../Image"
 
 module Glass
 
@@ -98,6 +100,14 @@ module Glass
 				end
 			end
 		end
+        
+        def get_image : SF::Image
+            if (i = @image).is_a?(ImageClip)
+                return i.get_image
+            else
+                raise "Couldn't retrieve Image"
+            end
+        end 
 
 		# TODO
 		# def hover, click, keyboard, focus etc...
