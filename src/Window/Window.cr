@@ -22,15 +22,25 @@ module Glass
             )
         end
         
-        def window
-            @window
+        # Start Window and poll events etc.
+        def run() : Nil
+            while @window.open?
+                while event = @window.poll_event
+                    puts event
+                    
+                    @window.close if event.is_a? SF::Event::Closed
+                end
+                
+                ## TODO in theory events determine soley which part of the GUI needs to be rerendered
+                render
+            end
         end
-            
+
         def set_widget(widget : Widget)
             @widget = widget
         end
         
-        def render : Nil
+        def render() : Nil
             @widget.render
 
             unless (img = @widget.get_image).nil?
@@ -41,7 +51,7 @@ module Glass
             @window.display
         end
 
-        def display
+        def display()
             if @window.open?
                 @window.display
             else

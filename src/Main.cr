@@ -11,17 +11,8 @@ module Glass
 
 	# create the window
 	window = Window.new("Glass Window", widget)
-
-	# run the program as long as the window is open
-	while window.open?
-		window.render
-
-        ## TODO implement event handling and delegation
-        # check all the window's evedents that were triggered since the last iteration of the loop
-        while event = window.window.poll_event
-            window.window.close if event.is_a? SF::Event::Closed
-		end
-	end
+    
+    window.run
 end
 
 def new_ui() : Glass::Widget
@@ -33,6 +24,6 @@ def new_ui() : Glass::Widget
 	container + Glass::Example.new(32_u8, 128_u8, 64_u8)
 	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
 	ui + container
-	ui.render()
+	# ui.render()
 	ui
 end
