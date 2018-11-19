@@ -15,13 +15,13 @@ module Glass
 end
 
 def new_ui() : Glass::Widget
-	img = SF::Image.new(256, 256)
-	ui = Glass::AbsolutContainer.new(img)
-	ui.background_color = SF::Color.new(64_u8, 64_u8, 64_u8)
-	container = Glass::VerticalContainer.new()
-	container + Glass::Example.new(128_u8, 64_u8, 32_u8)
-	container + Glass::Example.new(32_u8, 128_u8, 64_u8)
-	container + Glass::Example.new(64_u8, 32_u8, 128_u8)
+	img = SF::Image.new 256, 256
+	ui = Glass::AbsolutContainer.new img
+	ui.background_color = SF::Color.new 64_u8, 64_u8, 64_u8
+	container = Glass::VerticalContainer.new
+	container + Glass::Example.new SF::Color.new 128_u8, 64_u8, 32_u8
+	container + Glass::Example.new SF::Color.new 32_u8, 128_u8, 64_u8
+	container + Glass::Example.new SF::Color.new 64_u8, 32_u8, 128_u8
 	ui + container
 	ui
 end

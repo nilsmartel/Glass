@@ -8,9 +8,5 @@ module Glass
 
 		def initialize(@background_color : SF::Color)
 		end
-
-		def initialize(r, g, b : UInt8)
-			@background_color = SF::Color.new r, g, b
-		end
 	end
 end

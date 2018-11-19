@@ -77,6 +77,15 @@ module Glass
 		# and furthermore, assign adjusted ImageClips
 		def on_update()
 		end
+
+        def min_width() : UInt32
+            width
+        end
+        
+        def min_height() : UInt32
+            height
+        end
+            
 	end
 
 	class AbsolutContainer < Container
