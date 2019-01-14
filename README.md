@@ -37,6 +37,8 @@ the application should end up looking like this
 
 ![Example Application](./img/example_window.png "Example Window")
 
+*Note: this is heavily W.I.P. and no useful functionality has been exposed yet*
+
 ## Contributing
 
 1. Fork it ( https://github.com/sombrastudios/Glass/fork )
