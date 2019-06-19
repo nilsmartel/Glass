@@ -6,6 +6,11 @@ require "../Image"
 module Glass
 
 	class Widget
+        # Unique ID used to indentify this widget.
+        @id : String | Nil = nil
+        # Class name shared by multiple Widgets to determine them
+        @class : String | Nil = nil
+
 		@width  : UInt32 | Nil | Percent = nil
 		@height : UInt32 | Nil | Percent = nil
 		@parent : Widget | Nil = nil
@@ -14,6 +19,14 @@ module Glass
 
 		def initialize(@image)
 		end
+
+        def id()
+            @id
+        end
+
+        def class()
+            @class
+        end
 
         def min_width() : UInt32
             0

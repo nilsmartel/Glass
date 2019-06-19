@@ -8,6 +8,8 @@ module Glass
 
 	class Container < Widget
 		@childs : Array(Widget) = [] of Widget
+        @child_map = {} of String => Widget
+        
 
 		def initialize()
 			@width = nil
@@ -64,15 +66,6 @@ module Glass
 			end
 		end
 
-		def +(*widgets : Widget)
-		  widgets.each do |widget|
-				widget.set_parent self
-				widget.set_pos 0, 0
-				@childs << widget
-			end
-		end
-
-		# TODO this method will deal with all the positioning shit
 		# Method to recalculte position and size of all childs
 		# and furthermore, assign adjusted ImageClips
 		def on_update()
@@ -85,7 +78,29 @@ module Glass
         def min_height() : UInt32
             height
         end
-            
+       
+
+		def add_widget(*widgets : Widget)
+		  widgets.each do |widget|
+                if (id = widget.id).is_a?(String)
+                    @child_map[id] = widget
+                end
+
+				widget.set_parent self
+				widget.set_pos 0, 0
+				@childs << widget
+			end
+		end
+
+        def get_widget(id : String) : Widget
+            if @child_map.includes?(id)
+                return @child_map[id]
+            end
+
+            for container in @childs do |widget|
+
+                
+        end
 	end
 
 	class AbsolutContainer < Container
@@ -104,7 +119,7 @@ module Glass
 		end
 
 		# Add a Widget to the Container at Coordinates (x, y)
-		def +(widget, x, y : Int32)
+		def add_widget(widget, x, y : Int32)
 			widget.set_parent self
 			widget.set_pos x, y
 			@childs << widget
@@ -125,7 +140,7 @@ module Glass
 	class VerticalContainer < Container
 		@widget_height : UInt32 = 0_u32
 
-		def +(*widgets : Widget)
+		def add_widget(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
 				widget.set_pos 0, @widget_height.to_i32
@@ -170,7 +185,7 @@ module Glass
 	class HorizontalContainer < Container
 		@widget_width : UInt32 = 0_u32
 
-		def +(*widgets : Widget)
+		def add_widget(*widgets : Widget)
 			widgets.each do |widget|
 				widget.set_parent self
 				widget.set_pos @widget_width.to_i32, 0

@@ -2,6 +2,5 @@
 /lib/
 /bin/
 /.shards/
-shard.yml
 Main
 *.dwarf
