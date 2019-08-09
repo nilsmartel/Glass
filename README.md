@@ -4,6 +4,9 @@
 
 ---
 
+## TODO
+- Completly change positioning and stretching system. At the moment I'm solely focusing on the minimal window size it seems 
+
 
 ## Creating a simple Window
 in order to create a simple Window one first needs to set up the UI using widgets
