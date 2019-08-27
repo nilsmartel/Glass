@@ -4,6 +4,11 @@ version: 0.1.0
 authors:
   - sombrastudios
 
+dependencies:
+    crsfml:
+        github: oprypin/crsfml
+
+
 targets:
   Glass:
     main: src/Glass.cr

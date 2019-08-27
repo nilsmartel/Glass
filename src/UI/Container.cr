@@ -9,7 +9,7 @@ module Glass
 	class Container < Widget
 		@childs : Array(Widget) = [] of Widget
         @child_map = {} of String => Widget
-        
+
 
 		def initialize()
 			@width = nil
@@ -74,11 +74,11 @@ module Glass
         def min_width() : UInt32
             width
         end
-        
+
         def min_height() : UInt32
             height
         end
-       
+
 
 		def add_widget(*widgets : Widget)
 		  widgets.each do |widget|
@@ -99,7 +99,7 @@ module Glass
 
             for container in @childs do |widget|
 
-                
+
         end
 	end
 
@@ -229,5 +229,7 @@ module Glass
 	end
 end
 
+end
 
 ## TODO: Create scrollable Containers with fixed min_height | min_width
+
