@@ -10,7 +10,7 @@ module Glass
     widget = new_ui
 	# create the window
 	window = Window.new "Glass Window", widget
-    
+
     window.run
 end
 
@@ -23,7 +23,7 @@ def new_ui() : Glass::Widget
 	container.add_widget(Glass::Example.new SF::Color.new 128, 64, 32)
     container.add_widget(Glass::Example.new SF::Color.new 32, 128, 64)
     container.add_widget(Glass::Example.new SF::Color.new 64, 32, 128)
-   
+
     ui.add_widget container
 	ui
 end
