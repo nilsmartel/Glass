@@ -52,7 +52,7 @@ the application should end up looking like this
 
 ## Contributors
 
-* [[sombrastudios]](https://github.com/sombrastudios) sombrastudios - creator, maintainer
+* [[nilsmartel]](https://github.com/nilsmartel) nilsmartel - creator, maintainer
 
 
 
