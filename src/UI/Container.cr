@@ -8,6 +8,7 @@ module Glass
 
 	class Container < Widget
 		@childs : Array(Widget) = [] of Widget
+        # maps (string) ids to the direct children of this container.
         @child_map = {} of String => Widget
 
 
@@ -80,8 +81,10 @@ module Glass
         end
 
 
+        # TODO is this the right way to pass a list of Widgets?
 		def add_widget(*widgets : Widget)
 		  widgets.each do |widget|
+
                 if (id = widget.id).is_a?(String)
                     @child_map[id] = widget
                 end
@@ -92,14 +95,17 @@ module Glass
 			end
 		end
 
-        def get_widget(id : String) : Widget
+        def get_widget(id : String) : Widget | Nil
             if @child_map.includes?(id)
                 return @child_map[id]
             end
 
-            for container in @childs do |widget|
-
-
+            return @childs.find do |widget|
+                if (found = widget.get_widget id).is_a?(Widget)
+                    return found
+                end
+                return nil
+            end
         end
 	end
 
