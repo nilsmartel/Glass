@@ -235,7 +235,5 @@ module Glass
 	end
 end
 
-end
-
 ## TODO: Create scrollable Containers with fixed min_height | min_width
 
